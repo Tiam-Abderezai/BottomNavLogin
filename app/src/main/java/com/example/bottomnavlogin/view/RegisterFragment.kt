@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.example.bottomnavlogin.databinding.FragmentRegisterBinding
+import com.example.bottomnavlogin.viewmodel.RegisterViewModel
 
 class RegisterFragment : Fragment() {
 

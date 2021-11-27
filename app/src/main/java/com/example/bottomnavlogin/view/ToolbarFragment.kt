@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.bottomnavlogin.R
+import com.example.bottomnavlogin.databinding.FragmentToolbarBinding
 
 class ToolbarFragment  : Fragment() {
 
-    private var _binding: FragmentUpdatedToolbarBinding? = null
+    private var _binding: FragmentToolbarBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +21,7 @@ class ToolbarFragment  : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentUpdatedToolbarBinding.inflate(inflater, container, false).also {
+    ) = FragmentToolbarBinding.inflate(inflater, container, false).also {
         _binding = it
     }.root
 

@@ -5,18 +5,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.example.bottomnavlogin.databinding.FragmentHomeBinding
+import com.example.bottomnavlogin.databinding.FragmentLoginBinding
+import com.example.bottomnavlogin.viewmodel.LoginViewModel
 
-class HomeFragment : Fragment() {
+class LoginFragment : Fragment() {
 
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentLoginBinding? = null
     private val binding get() = _binding!!
+    private val viewModel by viewModels<LoginViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ) = FragmentHomeBinding.inflate(inflater, container, false).also {
+    ) = FragmentLoginBinding.inflate(inflater, container, false).also {
         _binding = it
     }.root
 
@@ -31,11 +34,12 @@ class HomeFragment : Fragment() {
     }
 
     private fun initViews() = with(binding) {
-        root.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-            (activity as? MainActivity)?.showFab = oldScrollY > scrollY
+        btnLogin.setOnClickListener {
+            viewModel.login("username", "password")
+            findNavController().navigate(LoginFragmentDirections.goToHomeGraph())
         }
-        buttonFirst.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.goToDestinationAnother())
+        tvRegister.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.goToDestinationRegister())
         }
     }
 }
